@@ -18,5 +18,13 @@
             <param name="invoiceBean"/>
             <result name="input">registryForm.jsp</result>
         </action>
+        <action name="showStudent" class="com.tuempresa.StudentAction">
+            <result name="input">/pages/showStudent.jsp</result>
+            <result name="success">/pages/studentDetails.jsp</result>
+        </action>
+        <action name="registerStudent" class="com.tuempresa.StudentAction">
+            <result name="input">/pages/registerStudent.jsp</result>
+            <result name="success">/pages/studentRegisteredSuccessfully.jsp</result>
+        </action>
     </package>
 </struts>
