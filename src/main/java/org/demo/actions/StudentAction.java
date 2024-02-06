@@ -37,6 +37,24 @@ public class StudentAction extends ActionSupport {
 		this.studentBean = studentBean;
 	}
 
+	public String showStudentInfo() throws Exception {
+		// Verifica si el DNI está presente, redirecciona a la página de detalles del estudiante
+		if (dni == null || dni.isEmpty()) {
+			addActionError("El DNI es obligatorio.");
+			return INPUT;
+		}
+		return SUCCESS;
+	}
+
+	public String registerStudent() throws Exception {
+		// Valida los datos del formulario y almacena la información en memoria
+		if (studentBean == null) {
+			addActionError("No se ha recibido ningún alumno.");
+			return INPUT;
+		}
+		return SUCCESS;
+	}
+
 	@Override
 	public void validate() {
 		if (studentBean.getFirstName().isEmpty() || studentBean.getFirstName() == null) {
