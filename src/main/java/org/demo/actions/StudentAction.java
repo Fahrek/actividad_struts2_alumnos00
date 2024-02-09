@@ -1,7 +1,6 @@
 package org.demo.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
-import org.demo.actions.beans.InvoiceBean;
 import org.demo.actions.beans.Student;
 
 import java.util.ArrayList;
@@ -17,16 +16,16 @@ public class StudentAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-		// Recuperar el alumno del Map de la sesión usando el DNI como clave
-		studentBean = (Student) session.get(dni);
-		if (studentBean == null) {
-			// Si no se encuentra el alumno, devolver ERROR y añadir un mensaje
-			addActionError("No se ha encontrado ningún alumno con el DNI " + dni);
-			return ERROR;
-		} else {
-			// Si se encuentra el alumno, devolver SUCCESS
+//		// Recuperar el alumno del Map de la sesión usando el DNI como clave
+//		studentBean = (Student) session.get(dni);
+//		if (studentBean == null) {
+//			// Si no se encuentra el alumno, devolver ERROR y añadir un mensaje
+//			addActionError("No se ha encontrado ningún alumno con el DNI " + dni);
+//			return INPUT;
+//		} else {
+//			// Si se encuentra el alumno, devolver SUCCESS
 			return SUCCESS;
-		}
+//		}
 	}
 
 	public Student getStudentBean() {
@@ -55,25 +54,25 @@ public class StudentAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	@Override
-	public void validate() {
-		if (studentBean.getFirstName().isEmpty() || studentBean.getFirstName() == null) {
-			addFieldError("studentBean.firstName", "El nombre es obligatorio.");
-		}
-		if (studentBean.getLastName().isEmpty() || studentBean.getLastName() == null) {
-			addFieldError("studentBean.lastName", "El apellido es obligatorio.");
-		}
-		if (studentBean.getEmail().isEmpty() || studentBean.getEmail() == null) {
-			addFieldError("studentBean.email", "El email es obligatorio.");
-		}
-		if (studentBean.getBirthDate() == null) {
-			addFieldError("studentBean.birthDate", "La fecha de nacimiento es obligatoria.");
-		}
-		if (studentBean.getStartDate() == null) {
-			addFieldError("studentBean.startDate", "La fecha de inicio es obligatoria.");
-		}
-		if (studentBean.getEndDate() == null) {
-			addFieldError("studentBean.endDate", "La fecha fin es obligatoria.");
-		}
-	}
+//	@Override
+//	public void validate() {
+//		if (studentBean.getFirstName().isEmpty() || studentBean.getFirstName() == null) {
+//			addFieldError("studentBean.firstName", "El nombre es obligatorio.");
+//		}
+//		if (studentBean.getLastName().isEmpty() || studentBean.getLastName() == null) {
+//			addFieldError("studentBean.lastName", "El apellido es obligatorio.");
+//		}
+//		if (studentBean.getEmail().isEmpty() || studentBean.getEmail() == null) {
+//			addFieldError("studentBean.email", "El email es obligatorio.");
+//		}
+//		if (studentBean.getBirthDate() == null) {
+//			addFieldError("studentBean.birthDate", "La fecha de nacimiento es obligatoria.");
+//		}
+//		if (studentBean.getStartDate() == null) {
+//			addFieldError("studentBean.startDate", "La fecha de inicio es obligatoria.");
+//		}
+//		if (studentBean.getEndDate() == null) {
+//			addFieldError("studentBean.endDate", "La fecha fin es obligatoria.");
+//		}
+//	}
 }
