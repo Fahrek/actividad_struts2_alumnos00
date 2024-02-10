@@ -13,10 +13,11 @@
 <body>
 <h1>Gestor de alumnos</h1>
 <p>Introduce el DNI de un alumno para ver su información:</p>
-<%--<s:form action="search">--%>
-<%--    <s:textfield name="dni" label="DNI" required="true"/>--%>
-<%--    <s:submit value="Buscar"/>--%>
-<%--</s:form>--%>
+<s:form action="search">
+    <s:fielderror fieldName="studentBean.dni"/>
+    <s:textfield name="dni" label="DNI"/>
+    <s:submit value="Buscar"/>
+</s:form>
 <p>O haz clic en el siguiente enlace para registrar un nuevo alumno:</p>
 <s:a href="register">Registrar alumno</s:a>
 </body>

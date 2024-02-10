@@ -12,16 +12,29 @@
         <action name="intro" class="org.demo.actions.IntroAction" method="execute">
             <result name="success">index.jsp</result>
         </action>
+        <action name="search" class="org.demo.actions.StudentAction" method="searchStudent">
+            <result name="success">showStudentInfo.jsp</result>
+            <param name="studentBean"/>
+            <result name="input">registerStudent.jsp</result>
+        </action>
+        <action name="register" class="org.demo.actions.StudentAction" method="registerStudent">
+            <result name="success">registerStudent.jsp</result>
+            <result name="input">registerStudent.jsp</result>
+        </action>
+        <action name="register" class="org.demo.actions.RegisterAction" method="execute">
+            <result name="success">showStudentInfo.jsp</result>
+            <param name="studentBean"/>
+            <result name="input">registerStudent.jsp</result>
+        </action>
 
 <!--        <action name="search" class="org.demo.actions.StudentAction" method="execute">-->
 <!--            <result name="success">showStudentInfo.jsp</result>-->
 <!--            <param name="studentBean"/>-->
 <!--            <result name="input">registerStudent.jsp</result>-->
 <!--        </action>-->
-
-        <action name="register" class="org.demo.actions.StudentAction" method="execute">
-            <result name="success">registerStudent.jsp</result>
-        </action>
+<!--        <action name="register" class="org.demo.actions.StudentAction" method="execute">-->
+<!--            <result name="success">registerStudent.jsp</result>-->
+<!--        </action>-->
 <!--        <action name="showStudent" class="org.demo.actions.StudentAction">-->
 <!--            <result name="input">showStudent.jsp</result>-->
 <!--            <result name="success">studentDetails.jsp</result>-->

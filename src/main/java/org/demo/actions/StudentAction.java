@@ -3,59 +3,75 @@ package org.demo.actions;
 import com.opensymphony.xwork2.ActionSupport;
 import org.demo.actions.beans.Student;
 
+import lombok.*;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class StudentAction extends ActionSupport {
 
+	@Setter
+	@Getter
 	private Student studentBean;
+	@Setter
+	@Getter
 	private String dni;
-	private Map<String, Object> session;
 	private final List<Student> STUDENTS = new ArrayList<>();
 
+	public StudentAction() {
+		this.studentBean = new Student();
+	}
+
 	@Override
-	public String execute() throws Exception {
-//		// Recuperar el alumno del Map de la sesión usando el DNI como clave
-//		studentBean = (Student) session.get(dni);
-//		if (studentBean == null) {
-//			// Si no se encuentra el alumno, devolver ERROR y añadir un mensaje
-//			addActionError("No se ha encontrado ningún alumno con el DNI " + dni);
-//			return INPUT;
-//		} else {
-//			// Si se encuentra el alumno, devolver SUCCESS
-			return SUCCESS;
-//		}
+	public String execute() {
+		// Si no hay estudiantes, redirige al formulario de registro
+		if (STUDENTS.isEmpty()) {
+			return INPUT;
+		} else {
+			// Si hay estudiantes, busca el estudiante con el DNI dado
+			this.studentBean = new Student();
+			return searchStudent();
+		}
 	}
 
-	public Student getStudentBean() {
-		return studentBean;
-	}
-
-	public void setStudentBean(Student studentBean) {
-		this.studentBean = studentBean;
-	}
-
-	public String showStudentInfo() throws Exception {
+	public String showStudentInfo() {
 		// Verifica si el DNI está presente, redirecciona a la página de detalles del estudiante
 		if (dni == null || dni.isEmpty()) {
 			addActionError("El DNI es obligatorio.");
 			return INPUT;
 		}
+		this.studentBean = new Student();
 		return SUCCESS;
 	}
 
-	public String registerStudent() throws Exception {
-		// Valida los datos del formulario y almacena la información en memoria
+	public String searchStudent() {
+		// Busca el alumno en la lista de alumnos
+		Student student = STUDENTS.stream().filter(s -> s.getDni().equals(dni)).findFirst().orElse(null);
+		if (student == null) {
+			addActionError("No se ha encontrado ningún alumno con el DNI " + dni);
+			return INPUT;
+		}
+		studentBean = student;
+		return SUCCESS;
+	}
+
+	public String registerStudent() {
+		// Valida los datos del formulario y almacena la información en la lista de estudiantes
 		if (studentBean == null) {
 			addActionError("No se ha recibido ningún alumno.");
 			return INPUT;
 		}
+		STUDENTS.add(studentBean);
 		return SUCCESS;
 	}
 
-//	@Override
-//	public void validate() {
+	@Override
+	public void validate() {
+		if (studentBean == null) {
+			addFieldError("studentBean.dni", "El DNI es obligatorio.");
+		}
 //		if (studentBean.getFirstName().isEmpty() || studentBean.getFirstName() == null) {
 //			addFieldError("studentBean.firstName", "El nombre es obligatorio.");
 //		}
@@ -74,5 +90,5 @@ public class StudentAction extends ActionSupport {
 //		if (studentBean.getEndDate() == null) {
 //			addFieldError("studentBean.endDate", "La fecha fin es obligatoria.");
 //		}
-//	}
+	}
 }
