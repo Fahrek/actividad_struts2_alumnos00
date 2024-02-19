@@ -10,7 +10,8 @@ import java.util.Date;
 @EqualsAndHashCode
 @ToString
 public class Student implements Serializable {
-	private String dni;
+	private int id;
+	private int dni;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -23,7 +24,8 @@ public class Student implements Serializable {
 	private Date startDate;
 	private Date endDate;
 
-	public Student(String dni, String firstName, String lastName, String email, String phone, String address, String city, String postalCode, String course, Date birthDate, Date startDate, Date endDate) {
+	public Student(int id, int dni, String firstName, String lastName, String email, String phone, String address, String city, String postalCode, String course, Date birthDate, Date startDate, Date endDate) {
+		this.id = id;
 		this.dni = dni;
 		this.firstName = firstName;
 		this.lastName = lastName;

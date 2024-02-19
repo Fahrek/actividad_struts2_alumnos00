@@ -1,28 +1,23 @@
 package org.demo.actions;
 
-import com.opensymphony.xwork2.ActionSupport;
-import org.demo.actions.beans.Student;
-
 import lombok.*;
+import org.demo.actions.beans.Student;
+import com.opensymphony.xwork2.ActionSupport;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class RegisterAction extends ActionSupport {
 
-	@Setter
-	@Getter
+	// Setter methods
+	private List<Student> students;
 	private Student studentBean;
-	private final List<Student> STUDENTS = new ArrayList<>();
-
-	public RegisterAction() {
-		this.studentBean = new Student();
-	}
 
 	@Override
 	public String execute() {
+		StudentService service = new StudentService();
+		service.saveStudent(studentBean);
 		return SUCCESS;
 	}
 
@@ -31,13 +26,13 @@ public class RegisterAction extends ActionSupport {
 		if (studentBean == null) {
 			addFieldError("studentBean.dni", "El DNI es obligatorio.");
 		}
-		if (studentBean.getFirstName().isEmpty() || studentBean.getFirstName() == null) {
+		if (studentBean.getFirstName().isEmpty()) {
 			addFieldError("studentBean.firstName", "El nombre es obligatorio.");
 		}
-		if (studentBean.getLastName().isEmpty() || studentBean.getLastName() == null) {
+		if (studentBean.getLastName().isEmpty()) {
 			addFieldError("studentBean.lastName", "El apellido es obligatorio.");
 		}
-		if (studentBean.getEmail().isEmpty() || studentBean.getEmail() == null) {
+		if (studentBean.getEmail().isEmpty()) {
 			addFieldError("studentBean.email", "El email es obligatorio.");
 		}
 		if (studentBean.getBirthDate() == null) {

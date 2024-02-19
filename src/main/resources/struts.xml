@@ -30,17 +30,17 @@
 <!--        <action name="search" class="org.demo.actions.StudentAction" method="execute">-->
 <!--            <result name="success">showStudentInfo.jsp</result>-->
 <!--            <param name="studentBean"/>-->
-<!--            <result name="input">registerStudent.jsp</result>-->
+<!--            <result name="input">registerStudentForm.jsp</result>-->
 <!--        </action>-->
 <!--        <action name="register" class="org.demo.actions.StudentAction" method="execute">-->
-<!--            <result name="success">registerStudent.jsp</result>-->
+<!--            <result name="success">registerStudentForm.jsp</result>-->
 <!--        </action>-->
 <!--        <action name="showStudent" class="org.demo.actions.StudentAction">-->
 <!--            <result name="input">showStudent.jsp</result>-->
 <!--            <result name="success">studentDetails.jsp</result>-->
 <!--        </action>-->
 <!--        <action name="registerStudent" class="org.demo.actions.StudentAction">-->
-<!--            <result name="input">registerStudent.jsp</result>-->
+<!--            <result name="input">registerStudentForm.jsp</result>-->
 <!--            <result name="success">showStudentInfo.jsp</result>-->
 <!--        </action>-->
     </package>
