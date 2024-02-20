@@ -15,21 +15,25 @@ public class IntroAction extends ActionSupport {
 
 	@Override
 	public String execute() {
-		// Get student ID from request parameters
+		// Obteniu l'identificador d'estudiant a partir dels paràmetres de la sol·licitud
 		String dni = getRequest().getParameter("studentDni");
-		StudentService service = new StudentService();
+		StudentService service = StudentService.getInstance(); // Utiliza la instancia singleton de StudentService
 		Student student = null;
 
 		try {
 			student = service.findByDni(Integer.parseInt(dni));
 			setShowStudentInfo(student != null);
+			if (student == null) {
+				addActionError("Student not found.");
+				return ERROR;
+			}
 		} catch (Exception e) {
-			// Handle exceptions here
-
+			addActionError("Invalid student id.");
+			return ERROR;
 		} finally {
 			setStudentId(student == null ? 0 : student.getId());
 		}
 
-		return INPUT;
+		return SUCCESS;
 	}
 }

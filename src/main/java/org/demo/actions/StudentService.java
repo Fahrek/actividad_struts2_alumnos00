@@ -7,9 +7,17 @@ import org.demo.actions.beans.Student;
 
 public class StudentService {
 	private final List<Student> students;
+	private static StudentService instance;
 
 	public StudentService() {
 		this.students = new ArrayList<>();
+	}
+
+	public static StudentService getInstance() {
+		if (instance == null) {
+			instance = new StudentService();
+		}
+		return instance;
 	}
 
 	public Student findByDni(int dni) {
